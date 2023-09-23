@@ -1,0 +1,38 @@
+Searching 108 files for "user_session_path"
+
+0 matches
+
+Searching 108 files for "session_path"
+
+~/code/authentication_from_scratch/app/controllers/users/account/password_resets_controller.rb:
+   22  	def update
+   23  		if @user.update!(password_params)
+   24: 			redirect_to new_session_path, notice: "Your password has been reset succesfully, please log in."
+   25  		else
+   26  			render :edit, status: :unprocessable_entity
+
+~/code/authentication_from_scratch/app/views/email_confirmations/password_resets_controller.rb:
+   22  	def update
+   23  		if @user.update!(password_params)
+   24: 			redirect_to new_session_path, notice: "Your password has been reset succesfully, please log in."
+   25  		else
+   26  			render :edit, status: :unprocessable_entity
+
+~/code/authentication_from_scratch/app/views/layouts/application.html.erb:
+   16      <% if user_signed_in? %>
+   17        <%= link_to "Edit Password", edit_password_path %>
+   18:       <%= button_to "Log out", session_path, method: :delete %>
+   19      <% else %>
+   20        <%= link_to "Sign Up", new_registration_path %>
+   21:       <%= link_to "Log in", new_session_path %>
+   22      <% end %>
+   23      <%= yield %>
+
+~/code/authentication_from_scratch/app/views/sessions/new.html.erb:
+    1  <h1>log in</h1>
+    2  
+    3: <%= form_with model: @user, url: session_path do |form| %>
+    4  	<div>
+    5  		<%= form.label :email %>
+
+5 matches across 4 files
