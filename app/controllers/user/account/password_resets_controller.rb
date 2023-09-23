@@ -5,10 +5,7 @@ class User::Account::PasswordResetsController < ApplicationController
 
   def create # create password reset
     if (user = User.find_by(email: params[:email]))
-      PasswordMailer.with(
-        user: user,
-        token: user.generate_token_for(:password_reset)
-      ).password_reset.deliver_later
+      PasswordMailer.with(user: user, token: user.generate_token_for(:password_reset)).password_reset.deliver_later
     end
 
     redirect_to root_path, notice: "Check your email to reset your password"
@@ -28,10 +25,7 @@ class User::Account::PasswordResetsController < ApplicationController
   private
 
   def password_params
-    params.require(:user).permit(
-      :password,
-      :password_confirmation
-    )
+    params.require(:user).permit(:password, :password_confirmation)
   end
 
   def set_user_by_token
